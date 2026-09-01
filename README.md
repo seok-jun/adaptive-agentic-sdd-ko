@@ -6,7 +6,9 @@
 
 **이슈 우선 · 위험도 기반 적응형 · 검증 전략 · 조건부 실기기 QA · 제한된 탐색**
 
-![Adaptive Agentic SDD 워크플로](assets/workflow-ko.svg)
+[![Adaptive Agentic SDD 워크플로우 개요](assets/workflow-overview-ko.svg)](assets/workflow-overview-ko.svg)
+
+[상세 워크플로우 크게 보기 →](assets/workflow-detailed-ko.svg)
 
 Adaptive Agentic SDD는 AI 코딩 에이전트를 활용할 때, 모든 변경에 무거운 절차를 강제하지 않으면서도 큰 비용이 드는 실수를 막을 만큼의 구조를 제공하는 실무 방법론입니다. 명세 주도 개발, 레거시 시스템의 AS-IS 분석, 위험도 기반 품질 게이트, 테스트·검증 계획, 아키텍처 거버넌스, 에이전트 오케스트레이션의 개념을 하나의 작업 흐름으로 결합합니다.
 
@@ -159,7 +161,8 @@ Epic   -> 작업 분할 + 심층 + 독립 검토
 adaptive-agentic-sdd-ko/
 ├── README.md
 ├── assets/
-│   └── workflow-ko.svg
+│   ├── workflow-overview-ko.svg
+│   └── workflow-detailed-ko.svg
 ├── docs/
 │   ├── concepts.md
 │   ├── workflow.md
