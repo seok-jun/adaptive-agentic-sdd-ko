@@ -1,31 +1,46 @@
-# Pull Request 템플릿
+## 작업 항목
+
+- 
 
 ## 요약
 
-- 변경한 내용
+- 
 
-## 이슈 부합 여부
+## 범위
 
-- 목표:
-- 범위:
-- 충족한 인수 조건:
+- 포함 범위:
+- 명시적으로 변경하지 않은 것:
 
-## 검증
+## Decision / contract note
 
-- [ ] 대상 중심 테스트
-- [ ] 필요한 광범위 검증
-- [ ] 필수 검토
-- [ ] 필요한 경우 실기기 QA
+- 
 
-## 실기기 QA
+## 검증 증거
 
-- 필요 여부: YES / NO
-- YES라면 이슈의 인수 조건에서 체크리스트를 도출합니다.
+- [ ] 대상 테스트
+- [ ] 필요한 경우 더 넓은 테스트
+- [ ] 필요한 경우 lint/static check
+- [ ] 필요한 경우 runtime/device/browser QA
 
-## 미검증 항목
+### 결과
 
-- 실행하지 않았거나 입증하지 못한 항목을 명시적으로 나열합니다.
+- PASS:
+- FAIL:
+- BLOCKED:
+- UNVERIFIED:
 
-## 후속 작업
+## Review / approval provenance
 
-- 구현 중 발견한 범위 밖의 이슈
+- Design review target/revision:
+- Design review result:
+- Human approval target/decision scope (필요한 경우):
+- Independent code review:
+
+## Risk / rollback note
+
+- 
+
+## 지속 문서 동기화
+
+- 갱신:
+- 불필요한 이유:

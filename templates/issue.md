@@ -1,44 +1,64 @@
-# 이슈 템플릿
+# 제목
 
-## 우선순위
+## Priority
 
-P?
+P0 / P1 / P2 / P3
 
-## SDD 등급
+## SDD grade
 
-Small | Medium | Large | Epic
+Trivial / Small / Medium / Large / Epic
 
-## 사용자 영향
+## 사용자 / 비즈니스 영향
 
-- 관찰 가능한 영향
+- 
 
 ## 목표
 
-- 완료 후 관찰 가능한 결과
+- 
 
 ## 범위
 
-- 포함하는 동작
+### 포함 범위
+
+- 
+
+### 제외 범위
+
+- 
 
 ## 작업 경계
 
-허용:
+### 수정 허용
 
-- 경로·모듈
+- 
 
-금지:
+### 수정 금지
 
-- 경로·모듈
+- 
 
-## 비범위
+## Source of Truth / 연결 명세
 
-- 명시적으로 제외할 사항
+- 
+
+## 의존성 / blocker
+
+- 
+
+## 이미 확정된 결정
+
+- 
 
 ## 인수 조건
 
-- [ ] 검증 가능한 조건
-- [ ] 검증 가능한 조건
+- [ ] 
 
-## 의존성·차단 요소
+## 검증 전략
 
-없음
+- AC -> evidence:
+
+## 검토 / 승인 요구사항
+
+- Design review:
+- Human approval:
+- Code review:
+- Runtime/device QA:
