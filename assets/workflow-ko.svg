@@ -1,43 +1,104 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1120" viewBox="0 0 1800 1120">
-<rect width="1800" height="1120" fill="white"/>
-<style>
-text{font-family:"Noto Sans CJK KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;fill:#172033}
-.t{font-size:58px;font-weight:700;fill:#0B2451}.s{font-size:23px;font-weight:700;fill:#5F6B7A}.h{font-size:24px;font-weight:700;fill:#0B2451}.ct{font-size:18px;font-weight:700}.b{font-size:13px}.sm{font-size:12px}.num{font-size:13px;font-weight:700;fill:white}
-</style>
-<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#0B2451"/></marker></defs>
-<text x="900" y="62" class="t" text-anchor="middle">Adaptive Agentic SDD</text>
-<text x="900" y="105" class="s" text-anchor="middle">Issue-first · Risk-Gated · Verification Strategy · Device QA · Bounded Exploration</text>
-<rect x="40" y="135" width="1720" height="82" rx="16" fill="#FAFBFC" stroke="#CBD5E1"/>
-<g>
-<text x="70" y="164" class="ct" fill="#0B2451">핵심 원칙</text>
-<text x="70" y="192" class="b">Issue-first · Observed AS-IS · Risk-Adaptive · Bounded Exploration · Evidence-based · Lifecycle Completion</text>
-</g>
-<text x="45" y="265" class="h">설계 · 계획</text>
-<!-- top cards -->
-<g>
-<rect x="45" y="285" width="250" height="205" rx="14" fill="#F4F8FF" stroke="#1D5FBF" stroke-width="2"/><circle cx="70" cy="312" r="15" fill="#1D5FBF"/><text x="70" y="317" class="num" text-anchor="middle">1</text><text x="95" y="318" class="ct" fill="#1D5FBF">Issue 정의</text><text x="65" y="352" class="b">• Priority / SDD grade</text><text x="65" y="379" class="b">• 목표·범위·완료 기준</text><text x="65" y="406" class="b">• 수정 허용·금지</text><text x="65" y="433" class="b">• 의존성·차단 요소</text>
-<rect x="330" y="285" width="250" height="205" rx="14" fill="#F4F8FF" stroke="#1D5FBF" stroke-width="2"/><circle cx="355" cy="312" r="15" fill="#1D5FBF"/><text x="355" y="317" class="num" text-anchor="middle">2</text><text x="380" y="318" class="ct" fill="#1D5FBF">Preflight</text><text x="350" y="352" class="b">• 본문·라벨 일치</text><text x="350" y="379" class="b">• blocker / dependency</text><text x="350" y="406" class="b">• 구현 가능 여부</text>
-<rect x="615" y="285" width="250" height="205" rx="14" fill="#F8F4FF" stroke="#6941A5" stroke-width="2"/><circle cx="640" cy="312" r="15" fill="#6941A5"/><text x="640" y="317" class="num" text-anchor="middle">3</text><text x="665" y="318" class="ct" fill="#6941A5">Claim / Isolation</text><text x="635" y="352" class="b">• lane 충돌 검사</text><text x="635" y="379" class="b">• branch / worktree</text><text x="635" y="406" class="b">• 작업 범위 고정</text>
-<rect x="900" y="285" width="250" height="205" rx="14" fill="#F1FBF9" stroke="#0F766E" stroke-width="2"/><circle cx="925" cy="312" r="15" fill="#0F766E"/><text x="925" y="317" class="num" text-anchor="middle">4</text><text x="950" y="318" class="ct" fill="#0F766E">AS-IS 분석</text><text x="920" y="352" class="b">• current main 기준</text><text x="920" y="379" class="b">• direct path / symbol</text><text x="920" y="406" class="b">• 관련 문서 최소 조회</text>
-<rect x="1185" y="285" width="250" height="205" rx="14" fill="#F1FBF9" stroke="#0F766E" stroke-width="2"/><circle cx="1210" cy="312" r="15" fill="#0F766E"/><text x="1210" y="317" class="num" text-anchor="middle">5</text><text x="1235" y="318" class="ct" fill="#0F766E">TO-BE + 검증 전략</text><text x="1205" y="352" class="b">• 변경 후 동작</text><text x="1205" y="379" class="b">• AC별 검증 방법</text><text x="1205" y="406" class="b">• 실패·예외 동작</text><text x="1205" y="445" class="sm" fill="#A66B00">Trade-off: 실제 경쟁안이 있을 때만 기록</text>
-<rect x="1470" y="285" width="250" height="205" rx="14" fill="#FFF8ED" stroke="#C66A08" stroke-width="2"/><circle cx="1495" cy="312" r="15" fill="#C66A08"/><text x="1495" y="317" class="num" text-anchor="middle">6</text><text x="1520" y="318" class="ct" fill="#C66A08">Grade Gate</text><text x="1490" y="352" class="b">• Small: Lean</text><text x="1490" y="379" class="b">• Medium: Standard</text><text x="1490" y="406" class="b">• Large: Design Review</text><text x="1490" y="433" class="b">• Epic: Breakdown + Review</text>
-</g>
-<g stroke="#0B2451" stroke-width="4" marker-end="url(#a)"><line x1="295" y1="388" x2="320" y2="388"/><line x1="580" y1="388" x2="605" y2="388"/><line x1="865" y1="388" x2="890" y2="388"/><line x1="1150" y1="388" x2="1175" y2="388"/><line x1="1435" y1="388" x2="1460" y2="388"/></g>
-<text x="45" y="555" class="h">구현 · 검증 · 완료</text>
-<!-- bottom cards -->
-<g>
-<rect x="45" y="575" width="230" height="205" rx="14" fill="#F4FBF5" stroke="#237A3B" stroke-width="2"/><circle cx="70" cy="602" r="15" fill="#237A3B"/><text x="70" y="607" class="num" text-anchor="middle">7</text><text x="95" y="608" class="ct" fill="#237A3B">구현</text><text x="65" y="642" class="b">• allowed path만 수정</text><text x="65" y="669" class="b">• AC 밖 변경 금지</text><text x="65" y="696" class="b">• 회귀 테스트 추가</text>
-<rect x="300" y="575" width="230" height="205" rx="14" fill="#F4FBF5" stroke="#237A3B" stroke-width="2"/><circle cx="325" cy="602" r="15" fill="#237A3B"/><text x="325" y="607" class="num" text-anchor="middle">8</text><text x="350" y="608" class="ct" fill="#237A3B">검증</text><text x="320" y="642" class="b">• targeted test 우선</text><text x="320" y="669" class="b">• 필요 시 broader test</text><text x="320" y="696" class="b">• 미실행은 PASS 아님</text>
-<rect x="555" y="575" width="230" height="205" rx="14" fill="#F4FBF5" stroke="#237A3B" stroke-width="2"/><circle cx="580" cy="602" r="15" fill="#237A3B"/><text x="580" y="607" class="num" text-anchor="middle">9</text><text x="605" y="608" class="ct" fill="#237A3B">자체 리뷰</text><text x="575" y="642" class="b">• diff ↔ AC 대조</text><text x="575" y="669" class="b">• scope creep 제거</text><text x="575" y="696" class="b">• unrelated path 확인</text>
-<rect x="810" y="575" width="230" height="205" rx="14" fill="#F4FBF5" stroke="#237A3B" stroke-width="2"/><circle cx="835" cy="602" r="15" fill="#237A3B"/><text x="835" y="607" class="num" text-anchor="middle">10</text><text x="860" y="608" class="ct" fill="#237A3B">Business 동기화</text><text x="830" y="642" class="b">• 최종 코드 기준</text><text x="830" y="669" class="b">• 실제 바뀐 규칙만 갱신</text>
-<rect x="1065" y="575" width="230" height="205" rx="14" fill="#F4FBF5" stroke="#237A3B" stroke-width="2"/><circle cx="1090" cy="602" r="15" fill="#237A3B"/><text x="1090" y="607" class="num" text-anchor="middle">11</text><text x="1115" y="608" class="ct" fill="#237A3B">PR / Review</text><text x="1085" y="642" class="b">• PR 범위 = Issue 범위</text><text x="1085" y="669" class="b">• grade별 review gate</text><text x="1085" y="696" class="b">• Large/Epic 독립 리뷰</text>
-<rect x="1320" y="575" width="230" height="205" rx="14" fill="#F1FBF9" stroke="#0F766E" stroke-width="2"/><circle cx="1345" cy="602" r="15" fill="#0F766E"/><text x="1345" y="607" class="num" text-anchor="middle">12</text><text x="1370" y="608" class="ct" fill="#0F766E">Device QA Gate</text><text x="1340" y="642" class="b">• 필요한 PR만 적용</text><text x="1340" y="669" class="b">• AC 기반 체크리스트</text><text x="1340" y="696" class="b">• 관측과 판정 분리</text>
-<rect x="1575" y="575" width="180" height="205" rx="14" fill="#F4FBF5" stroke="#237A3B" stroke-width="2"/><circle cx="1600" cy="602" r="15" fill="#237A3B"/><text x="1600" y="607" class="num" text-anchor="middle">13</text><text x="1625" y="608" class="ct" fill="#237A3B">Merge</text><text x="1595" y="642" class="b">• 필수 PASS</text><text x="1595" y="669" class="b">• Issue close</text><text x="1595" y="696" class="b">• 임시 SDD 정리</text><text x="1595" y="723" class="b">• lane release</text>
-</g>
-<g stroke="#0B2451" stroke-width="4" marker-end="url(#a)"><line x1="275" y1="678" x2="290" y2="678"/><line x1="530" y1="678" x2="545" y2="678"/><line x1="785" y1="678" x2="800" y2="678"/><line x1="1040" y1="678" x2="1055" y2="678"/><line x1="1295" y1="678" x2="1310" y2="678"/><line x1="1550" y1="678" x2="1565" y2="678"/></g>
-<!-- lower panels -->
-<rect x="45" y="825" width="760" height="220" rx="15" fill="#FAFBFC" stroke="#CBD5E1"/><text x="70" y="860" class="h">정보별 기준 출처 (Source of Truth)</text><text x="70" y="895" class="b">사용자 지시 → 현재 세션</text><text x="70" y="923" class="b">목표·범위·완료 기준 → 현재 Issue</text><text x="70" y="951" class="b">AS-IS → current main code</text><text x="410" y="895" class="b">아키텍처·모듈 경계 → architecture rules</text><text x="410" y="923" class="b">구현 후 제품 규칙 → durable product docs</text><text x="410" y="951" class="b">UI 상태·배치 → Issue-linked Visual Spec</text>
-<rect x="835" y="825" width="920" height="95" rx="15" fill="#F7FBFF" stroke="#1D5FBF"/><text x="860" y="860" class="ct" fill="#1D5FBF">Device QA 기본 trigger</text><text x="860" y="892" class="b">UI/UX · 미디어 · permission/notification · lifecycle · background · DB migration · 기기 의존 동작</text>
-<rect x="835" y="940" width="920" height="105" rx="15" fill="#FAFBFC" stroke="#CBD5E1"/><text x="860" y="975" class="ct" fill="#0B2451">토큰 효율 원칙</text><text x="860" y="1007" class="b">관련 없는 문서 일괄 조회 금지 · direct path/symbol 우선 · 같은 run 결과 재사용 · review/QA 재탐색 금지 · targeted verification 우선</text>
-<text x="900" y="1090" font-size="19" font-weight="700" fill="#C66A08" text-anchor="middle">핵심 철학: 많이 탐색하는 것보다, 이미 좁혀진 문제에서 틀린 답을 걸러내는 흐름</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1740" viewBox="0 0 1400 1740" role="img" aria-labelledby="title desc" xml:lang="ko">
+<title id="title">Adaptive Agentic SDD — 상세 워크플로</title><desc id="desc">Large는 AS-IS와 PLAN을 각각 독립 리뷰합니다. 다른 등급은 간결한 경로나 위험도 기반 경로를 유지합니다. 검증·리뷰의 차단 조건이 있으면 통합하지 않습니다. 최종 Human 승인과 설계 승인은 별개이며, Blind 리뷰는 선택 사항입니다. 중요한 변경이 있으면 관련 검토 단계로 돌아갑니다.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="#64748b" stroke-width="1.5" /></marker></defs>
+<style>text{font-family:"Noto Sans CJK KR","Malgun Gothic","Apple SD Gothic Neo",sans-serif;fill:#17243a}.title{font-size:34px;font-weight:700}.sub{font-size:18px;fill:#526278}.head{font-size:21px;font-weight:700}.body{font-size:17px}.small{font-size:15px;fill:#526278}.tag{font-size:14px;font-weight:700;letter-spacing:1px;fill:#326665}.edge{fill:none;stroke:#64748b;stroke-width:2;marker-end:url(#arrow)}.box{fill:#fff;stroke:#cbd5e1;stroke-width:1.5}.gate{fill:#edf7f5;stroke:#81b3aa;stroke-width:1.5}.warn{fill:#fff5e6;stroke:#dca866;stroke-width:1.5}.optional{fill:#f5f3ff;stroke:#a394c5;stroke-width:1.5;stroke-dasharray:7 5}</style>
+<path fill="#f5f7fa" d="M0 0H1400V1740H0Z" />
+<text x="48" y="58" class="title">Adaptive Agentic SDD / 상세 워크플로</text>
+<text x="48" y="92" class="sub">등급별 규칙을 따릅니다. 각 게이트는 적용 조건이 있으며, 모든 작업에 최대 절차를 요구하지 않습니다.</text>
+<rect x="48" y="124" width="790" height="94" rx="14" class="box" />
+<text x="68" y="158" class="head">01  사전 점검 + 등급 판정</text>
+<text x="68" y="188" class="body">현재 작업 항목·AC·범위·권한을 확인합니다. 필수 요구가 불명확하면 수정을 중단합니다.</text>
+<rect x="48" y="250" width="790" height="94" rx="14" class="box" />
+<text x="68" y="284" class="head">02  범위를 제한한 AS-IS 분석</text>
+<text x="68" y="314" class="body">직접 코드와 증거를 확인합니다. Trivial은 별도 문서 없이, Small은 메모로 정리합니다.</text>
+<rect x="48" y="376" width="790" height="110" rx="14" class="gate" />
+<text x="68" y="410" class="head">03  독립 AS-IS 리뷰 — Large</text>
+<text x="68" y="440" class="body">관찰한 동작, 직접 의존 관계, 미확인 사항, 문서와 코드의 차이를 검토합니다.</text>
+<text x="68" y="465" class="body">차단 사유를 해소한 후 AS-IS를 PLAN의 확정된 기준으로 사용합니다.</text>
+<rect x="48" y="518" width="790" height="102" rx="14" class="box" />
+<text x="68" y="552" class="head">04  TO-BE + 변경 계획 + 검증 전략</text>
+<text x="68" y="582" class="body">목표·보존·실패 동작, 변경 순서, AC별 입증 방법을 정의합니다.</text>
+<rect x="48" y="652" width="790" height="110" rx="14" class="gate" />
+<text x="68" y="686" class="head">05  독립 PLAN 리뷰 — Large</text>
+<text x="68" y="716" class="body">TO-BE와 변경 계획의 해당 버전을 대상으로 리뷰합니다.</text>
+<text x="68" y="741" class="body">다른 등급은 위험도별 규칙을 따릅니다. AS-IS PASS가 PLAN PASS를 뜻하지 않습니다.</text>
+<rect x="48" y="794" width="790" height="94" rx="14" class="gate" />
+<text x="68" y="828" class="head">06  설계 승인 — 사람이 결정해야 하는 경우</text>
+<text x="68" y="858" class="body">승인을 단계·산출물 버전·결정 범위에 연결합니다.</text>
+<rect x="48" y="920" width="790" height="94" rx="14" class="box" />
+<text x="68" y="954" class="head">07  허용된 범위만 구현</text>
+<text x="68" y="984" class="body">계약과 관련 없는 기존 변경을 보존합니다. 범위가 달라지면 등급 재판정 또는 중단합니다.</text>
+<rect x="48" y="1046" width="790" height="110" rx="14" class="box" />
+<text x="68" y="1080" class="head">08  검증 + 자체 리뷰 + 유지할 문서 갱신</text>
+<text x="68" y="1110" class="body">실제 관찰을 AC와 연결하고 최종 코드에 맞춰 문서를 갱신한 뒤 최종 변경을 검증합니다.</text>
+<text x="68" y="1135" class="body">필수 런타임 증거는 이 단계 또는 통합 준비 확인 전까지 확보합니다.</text>
+<rect x="48" y="1188" width="790" height="94" rx="14" class="gate" />
+<text x="68" y="1222" class="head">09  독립 CODE 리뷰 — 필요한 경우</text>
+<text x="68" y="1252" class="body">별도 리뷰어가 최종 변경과 증거를 확인합니다. 중요한 변경 시 관련 리뷰를 다시 수행합니다.</text>
+<rect x="48" y="1314" width="790" height="94" rx="14" class="warn" />
+<text x="68" y="1348" class="head">10  통합 준비 완료? 필수 증거·리뷰 충족 확인</text>
+<text x="68" y="1378" class="body">필수 AC는 PASS여야 하며, 미해결 차단 지적사항과 누락된 필수 리뷰가 없어야 합니다.</text>
+<rect x="48" y="1440" width="790" height="94" rx="14" class="gate" />
+<text x="68" y="1474" class="head">11  최종 Human 승인</text>
+<text x="68" y="1504" class="body">정확한 변경 버전과 통합 작업을 승인받습니다. 권한이 확정되지 않았으면 중단합니다.</text>
+<rect x="48" y="1566" width="790" height="94" rx="14" class="box" />
+<text x="68" y="1600" class="head">12  승인된 통합 + 정리</text>
+<text x="68" y="1630" class="body">승인된 병합·종료·릴리스 작업만 수행하고 필요한 증거를 보존합니다.</text>
+<path d="M443 220V240" class="edge" />
+<path d="M443 346V366" class="edge" />
+<path d="M443 488V508" class="edge" />
+<path d="M443 622V642" class="edge" />
+<path d="M443 764V784" class="edge" />
+<path d="M443 890V910" class="edge" />
+<path d="M443 1016V1036" class="edge" />
+<path d="M443 1158V1178" class="edge" />
+<path d="M443 1284V1304" class="edge" />
+<path d="M443 1410V1430" class="edge" />
+<path d="M443 1536V1556" class="edge" />
+<rect x="880" y="124" width="472" height="220" rx="14" class="box" />
+<text x="900" y="158" class="head">등급별 준비</text>
+<text x="900" y="188" class="body">Trivial: 대상 검증, 설계 게이트 없음</text>
+<text x="900" y="213" class="body">Small: 관련 메모, 자체 리뷰 기본</text>
+<text x="900" y="238" class="body">Medium: 분석·계획 명시, 위험도별 리뷰</text>
+<text x="900" y="263" class="body">Large: AS-IS·PLAN·CODE 각각 판정</text>
+<text x="900" y="288" class="body">Epic: 먼저 분할, 하위 작업 위험도 재판정</text>
+<rect x="880" y="376" width="472" height="160" rx="14" class="box" />
+<text x="900" y="410" class="head">독립성은 역할의 분리</text>
+<text x="900" y="440" class="body">별도 호출·세션 또는 별도 사람</text>
+<text x="900" y="465" class="body">동일한 모델 사용 가능</text>
+<text x="900" y="490" class="body">작성자의 자체 리뷰는 독립 리뷰가 아님</text>
+<rect x="880" y="568" width="472" height="194" rx="14" class="optional" />
+<text x="900" y="602" class="head">선택적 Blind 리뷰</text>
+<text x="900" y="632" class="body">작성자·주 리뷰어와 독립된 리뷰어</text>
+<text x="900" y="657" class="body">동일한 AC·계약·안전 경계 제공</text>
+<text x="900" y="682" class="body">최초 판정 전에는 이전 지적사항 비공개</text>
+<text x="900" y="707" class="body">이후 결과 대조, 모든 작업에 강제하지 않음</text>
+<rect x="880" y="794" width="472" height="220" rx="14" class="box" />
+<text x="900" y="828" class="head">문맥 범위와 버전 관리</text>
+<text x="900" y="858" class="body">단계·범위·AC·직접 증거 전달</text>
+<text x="900" y="883" class="body">지적사항과 증거 위치 반환</text>
+<text x="900" y="908" class="body">필요하면 직접 의존 관계 확인</text>
+<text x="900" y="933" class="body">읽기 허용이 수정 권한 확장을 뜻하지 않음</text>
+<text x="900" y="958" class="body">변경되지 않은 관련 문맥만 재사용</text>
+<rect x="880" y="1046" width="472" height="220" rx="14" class="warn" />
+<text x="900" y="1080" class="head">검증 상태</text>
+<text x="900" y="1110" class="body">PASS: 관찰 증거가 기대 결과를 충족</text>
+<text x="900" y="1135" class="body">FAIL: 관찰 증거가 기대 결과와 불일치</text>
+<text x="900" y="1160" class="body">UNVERIFIED: 미실행 또는 증거 부족</text>
+<text x="900" y="1185" class="body">BLOCKED: 구체적 장애로 검증 불가</text>
+<text x="900" y="1210" class="body">명령·쿼리 생성 ≠ 실제 실행</text>
+<rect x="880" y="1314" width="472" height="220" rx="14" class="warn" />
+<text x="900" y="1348" class="head">중단 / 관련 검토 단계로 복귀</text>
+<text x="900" y="1378" class="body">필수 검증이 비PASS 또는 리뷰 누락: 중단</text>
+<text x="900" y="1403" class="body">중요한 변경: 관련 검증·리뷰 재수행</text>
+<text x="900" y="1428" class="body">새 대상 버전에 필요한 승인을 다시 확인</text>
+<text x="900" y="1453" class="body">Human 승인이 검증 증거를 만들지는 않음</text>
+<text x="900" y="1478" class="body">차단된 게이트를 우회해 병합하지 않음</text>
+<path d="M840 1361H869" class="edge" />
+<text x="850" y="1347" class="small">아니요</text>
+<text x="456" y="1422" class="small">예</text>
+<rect x="880" y="1566" width="472" height="94" rx="14" class="box" />
+<text x="900" y="1600" class="head">제한적인 저위험 정책 예외</text>
+<text x="900" y="1630" class="body">기록된 적용 조건과 명시적 권한 위임 필요</text>
+<text x="48" y="1706" class="small">정책 기준: docs/workflow.md · docs/risk-grades.md · docs/review-gates.md · docs/verification.md</text>
 </svg>
