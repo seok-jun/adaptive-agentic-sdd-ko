@@ -1,104 +1,46 @@
 ---
 name: implementing-issue
-description: 승인된 저장소 작업 항목을 제한된 분석, 위험 적응형 SDD gate, 범위 내 수정, 검증, 검토를 사용해 구현한다.
+description: 제한된 분석, 위험도별 검토, AC에 연결된 증거, 명시적 통합 허가를 사용해 승인된 작업 항목을 구현합니다.
 ---
 
-# Implementing Issue — Starter
+# 작업 항목 구현 — Starter
 
-## Inputs
+## 필수 입력과 사전 점검
 
-필수:
+현재 작업 항목·스냅샷과 `docs/sdd-workflow.md`를 읽고, 이후 대상 코드·직접 계약과 관련 있는 도메인 문서만 읽습니다.
 
-1. 현재 작업 항목 identity와 최신 body/snapshot,
-2. `docs/sdd-workflow.md`,
-3. target code와 direct contract,
-4. 관련 있을 때만 linked architecture/product docs.
+목표, 사용자·업무 영향, AC, 범위·제외 범위, 수정 허용·금지 경계, 확정된 결정, 의존성, 등급, 요청 행위, 현재 권한을 확정합니다. 중요한 AC의 입증 방법을 확인합니다. 필수 정보·권한을 안전하게 확정할 수 없으면 수정을 멈춥니다.
 
-일반적인 프로젝트 이해를 위해 관련 없는 domain을 읽지 않습니다.
+## 등급별 경로
 
-## Preflight
+등급을 재정의하지 않고 로컬 기준표를 사용합니다.
 
-제품 수정 전에:
+- Trivial: 직접적인 비동작 변경, 대상 검증, 자체 검토. SDD 패키지 없음.
+- Small: 작업 항목·메모에 제한된 분석과 계획, 대상 검증과 자체 검토.
+- Medium: 명시적 AS-IS, TO-BE·변경 계획, 위험에 따른 독립 검토.
+- Large: AS-IS -> 독립 AS-IS 검토 -> PLAN -> 독립 PLAN 검토 -> 필요한 설계 승인 -> 구현. 최종 검증 뒤 독립 CODE 검토.
+- Epic: 작업 분할·통합 책임 우선, 위험한 레인에 Large 게이트 적용.
 
-1. 목표, 범위·제외 범위, 인수 조건, dependency·blocker를 확인하고,
-2. grade를 확정하고,
-3. path ownership이 중요한 경우 수정 허용·금지 경계를 확인하고,
-4. 현재 phase에 필요한 approval이 있는지 확인하고,
-5. 중요한 인수 조건의 verification strategy를 식별합니다.
+새 위험이 드러나면 승격합니다. 단계별 판정은 구분하되 별도 파일이 반드시 필요한 것은 아닙니다. 필수 독립 검토는 다른 호출·세션 또는 사람이 수행하며 작성자의 자체 검토를 계산하지 않습니다.
 
-필수 정보를 안전하게 판단할 수 없으면 수정하지 않고 blocker를 보고합니다.
+## 제한된 분석과 PLAN
 
-## Grade gate
+직접 경로, 심볼, 공개 계약, 호출자·피호출자, 관련 지속 문서 순으로 확인하고 구체적인 불확실성이 있을 때만 넓힙니다. 관찰, 증거, 미확인 사항, 문서 불일치를 기록합니다. 직접 의존 관계를 읽어도 수정 권한이 넓어지지는 않습니다.
 
-- **Trivial**: 별도 SDD artifact 없음. 대상 변경 + 대상 검증 + 자체 검토.
-- **Small**: 작업 항목을 plan으로 사용 가능. 제한된 검사 + 대상 검증 + 자체 검토.
-- **Medium**: 명시적 AS-IS / TO-BE / change plan. contract/integration risk가 정당화할 때 제한된 검토.
-- **Large**: 명시적 AS-IS + PLAN, 독립 설계/contract review, 로컬 정책상 필요한 경우 Human 승인, 병합 전 독립 code review.
-- **Epic**: 먼저 분할하고 integration ownership을 정의합니다. 하나의 거대한 implementation lane을 만들지 않습니다.
+원하는 동작·보존할 동작, 실패 처리, 필요한 상태 전이, 변경 순서, AC와 증거 대응, 실제 트레이드오프만 정의합니다. 필요한 검토·승인을 단계와 대상 리비전에 연결합니다. 범위를 제한한 자료를 전달하고 부모의 전체 대화를 기본으로 제공하지 않습니다. Blind Audit이 필요하면 로컬 분리 계약을 따릅니다.
 
-분석 중 더 높은 위험이 드러나면 grade를 올립니다.
+## 구현과 검증
 
-## 제한된 AS-IS
+허가된 범위만 수정하고 확정된 계약과 관련 없는 작업을 보존합니다. 유용한 직접 회귀 검증을 추가합니다. 더 넓은 관련 검사보다 대상 검사를 먼저 실행합니다.
 
-다음 순서로 탐색합니다.
+중요한 AC에는 방법·기대값, 실제 관찰, 대상 리비전·환경, PASS / FAIL / BLOCKED / UNVERIFIED, 증거·사유를 기록합니다. 생성한 명령이나 의도한 동작으로 런타임 PASS를 추정하지 않습니다.
 
-1. 직접 target path,
-2. target symbol,
-3. 직접 public contract,
-4. 직접 caller/callee,
-5. 관련 durable docs,
-6. 구체적인 증거가 요구할 때만 더 넓은 검색.
+최종 diff를 AC, 경계, 결정, 의도하지 않은 영향과 자체 비교합니다. 필요하면 최종 관찰 동작에 맞춰 지속 문서를 동기화합니다. 최종 검사와 필요한 독립 CODE 검토·런타임 증거를 확보합니다. 후보의 중요한 변경 후에는 영향받는 검사·검토를 다시 수행합니다.
 
-관찰된 동작과 unknown을 기록합니다. 오래된 planning document를 현재 runtime truth로 취급하지 않습니다.
+## 마무리 경계
 
-## TO-BE + 검증
+최종 후보, AC 증거, 필요한 검토 결과, 문서 동기화, 남은 제한 사항, 요청하는 통합 행위를 보고합니다. 필수 증거·검토 누락은 준비 완료를 차단합니다. 자체 검토는 독립 검토의 대체 인증이 아닙니다.
 
-Medium+ 작업은 다음을 정의합니다.
+문서화된 적용 가능 저위험 위임을 기록한 경우가 아니라면 후보·행위에 대한 사람의 명시적 최종 허가를 기다립니다. 구현·커밋 승인은 병합·작업 종료·릴리스 승인이 아닙니다. 승인이 증거 누락을 PASS로 만들지는 않습니다.
 
-- 원하는 동작,
-- 유지할 동작,
-- failure behavior,
-- 순서가 있는 change plan,
-- acceptance criterion과 evidence의 매핑,
-- 실제 경쟁 선택지가 있을 때만 real trade-off.
-
-## Review / approval
-
-설계 검토가 필요하면 제한된 phase-aware packet을 제공합니다. 환경이 immutable/revisioned artifact를 지원하면 review를 exact revision에 귀속합니다.
-
-Review PASS는 Human 승인이 아닙니다.
-
-Human 승인이 필요하면 실제 제시된 phase, artifact revision, decision scope에만 적용됩니다. 의미 있는 revision 변경에는 새 review/approval이 필요합니다.
-
-## 구현
-
-- 범위 안에서만 수정하고,
-- 승인된 decision/contract를 유지하고,
-- 관련 없는 cleanup을 피하고,
-- 유용한 경우 직접 regression coverage를 추가합니다.
-
-## 검증
-
-대상 중심 check를 먼저 실행하고 변경 surface가 정당화할 때만 더 넓은 check를 수행합니다.
-
-필수 check는 각각 PASS, FAIL, BLOCKED, UNVERIFIED로 보고합니다. 의도만으로 PASS를 추정하지 않습니다.
-
-## 자체 검토
-
-최종 diff를 다음과 비교합니다.
-
-- 작업 항목 범위,
-- 인수 조건,
-- 경계,
-- 승인된 decision,
-- 의도하지 않은 변경.
-
-## 완료
-
-작업 완료를 선언하기 전에:
-
-- runtime/product 동작이 바뀌면 durable docs를 갱신하고,
-- 필요한 독립 검토를 완료하고,
-- verification evidence와 unverified 항목을 기록하고,
-- 저장소 정책에 따라 PR을 생성·갱신하고,
-- 해당되는 경우 임시 artifact/workspace를 정리합니다.
+허가 전에는 전체 통합·완료가 아니라 Human Review 준비 완료라고 보고합니다. 허가 후에도 허용된 통합·정리만 수행하고 필수 증거와 관련 없는 변경을 보존합니다. 실제 실행한 것과 미검증 사항을 명시합니다.

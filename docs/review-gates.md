@@ -1,109 +1,94 @@
-# Review Gates
+# 검토 게이트
 
-검토 깊이는 위험도와 phase에 따라 달라집니다.
+검토 깊이는 [등급별 표](risk-grades.md)를 따릅니다. 이 문서는 검토와 승인의 의미를 정의합니다.
 
-## 검토 원칙
+## 독립성
 
-- 검토는 재설계보다 **반증(falsify)**에 집중합니다.
-- Reviewer context는 현재 phase와 직접 contract로 제한합니다.
-- Review PASS는 증거이지 Human 승인이 아닙니다.
-- 검토된 artifact가 revision으로 식별된다면 finding과 PASS는 해당 revision에만 적용됩니다.
-- decision·scope·contract semantics가 의미 있게 바뀌면 새 검토가 필요합니다.
+자체 검토는 작성자가 자신의 작업을 요청과 비교하는 것이며 독립 검토로 계산하지 않습니다.
 
-## Phase-aware Review Packet
+독립 Reviewer는 대상 산출물을 작성하지 않은 별도의 에이전트 호출·세션 또는 별도 사람입니다. 다른 모델을 쓸 필요는 없습니다. 이어지는 같은 문맥에서 작성자의 역할 이름만 바꾸는 것으로는 독립성이 생기지 않습니다. 로컬 정책에 따라 검토자 역할·세션 식별자를 기록합니다.
 
-설계 Review Packet에는 일반적으로 다음만 포함합니다.
+같은 독립 Reviewer가 AS-IS와 PLAN을 순서대로 검토해도 됩니다. 독립 에이전트 검토를 제공할 수 없다면 다른 허가된 검토자를 사용하거나 필수 게이트 미충족으로 보고합니다. 자체 검토를 독립 검토 완료로 바꿔 표시하지 않습니다.
 
-- 작업 항목 identity와 인수 조건,
-- 현재 phase(`AS-IS`, `PLAN`, `CODE`),
-- 가능한 경우 정확한 대상 artifact/revision,
-- 승인된 upstream decision,
-- 직접 caller/callee, 공개 contract, invariant,
-- 수정 허용·금지 경계,
-- 관련 증거.
+## 범위를 제한한 단계별 검토 자료
 
-명시적 작업이 architecture discovery인 경우가 아니라면 저장소 전체를 reviewer에게 넘겨주고 새 설계를 요구하지 않습니다.
+Reviewer에게 다음을 제공합니다.
 
-## Small
+- 작업 항목 식별자·리비전, AC, 확정된 요구사항
+- 단계(`AS-IS`, `PLAN`, `CODE`)와 정확한 대상 리비전
+- 승인된 선행 결정, 직접 계약·불변 조건
+- 수정 허용·금지 경계
+- 관련 증거, 알려진 미확인 사항, 구체적인 검토 질문
 
-기본:
+이 자료는 탐색의 시작점이지 주장을 확인하는 데 필요한 직접 호출자·피호출자나 증거를 읽지 말라는 제한이 아닙니다. 구체적인 이유가 있으면 읽기를 확장하되 범위 밖 수정이나 저장소 전체 재탐색을 허가하지 않습니다.
 
-- implementation agent 자체 검토.
+검토는 재설계가 아니라 반증을 목적으로 합니다. PASS는 검토한 후보에만 적용되며 사람의 승인이 아닙니다.
 
-구체적인 이유가 있을 때 독립 검토를 선택적으로 적용합니다.
+## Large의 단계별 게이트
 
-## Medium
+1. **AS-IS 검토:** 관찰된 동작, 증거, 직접 의존 관계, 미확인 사항, 의미 있는 문서 불일치를 확인합니다. 승인되지 않은 미래 설계를 현재 관찰 대신 사용하지 않습니다. 분석을 PLAN의 근거로 삼기 전에 차단 지적사항을 해결합니다.
+2. **PLAN 검토:** TO-BE, 변경 계획, AC 충족 범위, 보존할 동작, 실패 동작, 범위, 책임, 검증 가능성을 점검합니다. 구현 전에 계약 차단 사항을 해결하고 필요한 설계 승인을 받습니다.
+3. **CODE 검토:** 최종 후보를 승인된 계약, AC 증거, 회귀 위험, 수정 경계와 비교합니다. 통합 전에 완료합니다.
 
-기본:
+문서나 보고서가 하나의 파일이어도 단계별 판정은 구분합니다. 통합 문서에서도 AS-IS 결론을 확정된 계획 기준으로 취급하기 전에 AS-IS를 검토해야 합니다. 단계마다 새 모델이나 큰 문서가 필요한 것은 아닙니다.
 
-- shared contract, ambiguity 또는 integration risk가 정당화할 때 제한된 독립 검토.
+Medium 검토는 위험에 따라 결정합니다. Small·Trivial은 구체적인 위험으로 승격이 필요한 경우가 아니라면 간결한 경로를 유지합니다. Epic은 먼저 작업 분할·통합 책임을 검토하고 위험한 레인에 Large 게이트를 적용합니다.
 
-Reviewer는 phase packet 범위 안에 머뭅니다.
+## 요구사항 기반 검토와 선택적 Blind Audit
 
-## Large
+요구사항 기반 검토는 제공된 AC와 승인된 단계 계약을 확인합니다. Blind Audit은 누락, 숨은 가정, 이전 판정에 대한 편향이 중요한 위험일 때 독립적인 최초 평가를 추가합니다.
 
-기본적으로 다음이 필요합니다.
+사용하는 경우 다음을 지킵니다.
 
-1. 구현 전 독립 설계/contract review,
-2. 병합 전 독립 code review.
+- 작성자 및 주 Reviewer와 독립된 검토자·세션을 사용합니다.
+- 같은 AC, 단계 계약, 안전 경계, 대상 리비전을 제공합니다.
+- 감사자가 최초 판정을 확정하기 전에는 주 검토의 판정·지적사항과 작성자의 결론 유도성 검토 요약을 전달하지 않습니다.
+- 최초 결과를 보존한 뒤 주 검토의 지적사항과 대조·조정합니다.
 
-설계 검토는 다음을 확인합니다.
+Blind는 요구사항이나 알려진 안전 제약을 숨긴다는 뜻이 아닙니다. 제한 없는 제품 재설계를 요청하는 것도 아닙니다. 감사가 필요한 이유를 기록하고, 도구가 지원한다는 이유만으로 모든 작업에 강제하지 않습니다.
 
-- architecture·boundary 위반,
-- 만족할 수 없는 인수 조건,
-- 안전하지 않은 failure behavior,
-- 누락된 integration ownership,
-- 해결되지 않은 contract 선택,
-- 구현에 의미 있게 영향을 주는 hidden assumption.
+## 검토 결과
 
-코드 검토는 다음을 확인합니다.
+간단한 기록으로 충분합니다.
 
-- diff와 작업 항목·승인된 plan의 일치,
-- 검증 증거,
-- regression,
-- scope creep,
-- 안전하지 않은 구현 세부사항.
+```text
+단계 / 대상 리비전:
+검토자 역할 또는 세션:
+판정: PASS | CHANGES_REQUIRED | BLOCKED
+지적사항: 유형, 위치, 증거, 위반한 AC·계약, 필요한 수정
+미확인 사항 / 검토하지 않은 범위:
+Blind 최초 판정과 결과 대조: 사용한 경우에만
+```
 
-## Epic
+이는 검토 판정이며 [검증 상태](verification.md)와 구분합니다.
 
-다음이 필요합니다.
+무엇을 차단하는지에 따라 지적사항을 분류합니다.
 
-- breakdown·integration ownership 검토,
-- 고위험 child/integration work의 설계 검토,
-- Large와 유사한 lane의 독립 code review.
+- **Human Decision blocker:** 서로 다른 제품·아키텍처 의미 중 사람이 선택해야 합니다.
+- **Execution-contract blocker:** 기술적으로 가능한 방향들이 계약, 영속성, 복구, 범위의 의미를 다르게 만듭니다. 구현 전에 한 방향으로 확정합니다.
+- **Implementation finding:** 계약은 명확합니다. 제품 결정을 다시 열지 않고 코드·fixture·기계적 처리를 수정합니다.
+- **Non-blocking observation:** 현재 인수 조건·결정 경계 밖의 개선 사항입니다.
 
-## Blind Audit escalation
+## 설계 승인
 
-주요 위험이 누락, hidden assumption, reviewer anchoring일 때 Blind Audit이 유용합니다.
+로컬 정책상 사람이 결정권을 가진 경우 단계, 산출물 리비전, 결정 범위, 승인자, 승인 시간을 필요한 수준으로 기록합니다. 관련 검토 차단 사항을 해결한 뒤 승인을 받습니다.
 
-사용할 때:
+Reviewer PASS, 모호한 동의, 침묵, 이전 후보로 승인을 추정하지 않습니다. 계획 허가, 구현 허가, 통합 허가는 서로 다른 범위입니다.
 
-- author와 primary contract reviewer 모두와 독립된 reviewer/session을 사용하고,
-- auditor의 최초 verdict 전에 primary review verdict·finding을 미리 제공하지 않고,
-- 동일한 제한된 phase contract와 target revision을 제공하고,
-- 최초 blind verdict가 고정된 뒤에만 이전 finding을 reconciliation합니다.
+## 최종 통합 허가
 
-도구가 지원한다는 이유만으로 Blind Audit을 universal하게 만들지 않습니다.
+필수 증거와 검토를 완료한 뒤 다음을 제시합니다.
 
-## Finding 분류
+- 최종 후보 리비전과 작업 항목 식별자
+- 범위와 의미 있는 결정
+- AC 결과, 증거, 미해결 또는 비필수 제한 사항
+- 필요한 검토 결과와 해당하는 문서 동기화
+- 요청 행위: 병합, 작업 종료, 릴리스 또는 명시적으로 범위를 정한 다른 작업
 
-Finding은 실제로 무엇을 막는지에 따라 분류합니다.
+기본값은 이 후보와 행위에 대한 사람의 명시적 승인을 기다리는 것입니다. 구현·커밋 허가는 병합·릴리스 권한이 아닙니다. 저위험 통합을 명시적으로 위임한 정책은 기록된 범위·조건 안에서만 개별 승인을 대신할 수 있습니다. 정책이 없거나 모호하면 멈춥니다.
 
-- **Human Decision blocker** — 경쟁하는 제품·아키텍처 의미에 Human 선택이 필요함.
-- **Execution-contract blocker** — 여러 기술적으로 합리적인 구현이 contract·persistence·recovery·scope 의미를 바꿀 수 있어 구현 전에 한 방향으로 고정해야 함.
-- **Implementation finding** — 승인된 contract가 명확하며 코드·fixture·기계적 수정이 필요함.
-- **Non-blocking observation** — 현재 acceptance·decision 경계 밖의 유용한 개선.
+승인은 FAIL·BLOCKED·UNVERIFIED 증거를 PASS로 바꾸지 않습니다. 미충족 필수 AC·검토는 여전히 완료를 차단합니다. 범위·AC 변경은 명시적으로 결정하고 필요하면 다시 검토하며, 조용히 면제하지 않습니다.
 
-이 분류는 구현 결함 때문에 제품 decision이 불필요하게 다시 열리는 것을 막습니다.
+## 리비전 변경
 
-## Human approval provenance
-
-Human 승인이 필요하면 무엇을 승인했는지 알 수 있을 만큼의 provenance를 기록합니다.
-
-- phase,
-- target artifact/revision,
-- decision scope,
-- 로컬 정책에 따른 approver identity,
-- 로컬 정책에 따른 승인 시각.
-
-Reviewer PASS, 일반적인 대화 동의, 오래된 artifact revision에서 승인을 추정하지 않습니다.
+불변이거나 모호하지 않은 대상 식별값(커밋, 버전 문서, 식별 가능한 스냅샷)을 사용합니다. 범위, 계약, 결정, 인수 의미, 구현의 중요한 변경은 영향받는 판정·승인을 무효화합니다. 해당 증거를 재검증·재검토하고 필요한 승인을 위해 새 후보를 제시합니다. 변경되지 않은 증거도 여전히 관련 있음을 입증할 수 있을 때만 재사용합니다.

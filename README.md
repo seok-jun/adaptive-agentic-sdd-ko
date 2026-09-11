@@ -1,174 +1,94 @@
 # Adaptive Agentic SDD
 
-> 이 저장소는 [`adaptive-agentic-sdd`](https://github.com/seok-jun/adaptive-agentic-sdd)의 한국어판입니다.
-> 영문 원본을 canonical source로 사용하며,
-> 한국어판은 의미를 유지하면서 한국 개발 환경에 맞게 표현을 현지화합니다.
+[English](https://github.com/seok-jun/adaptive-agentic-sdd) | **한국어**
+
+> 이 저장소는 영문 `adaptive-agentic-sdd`의 한국어판입니다. 영문을 기준 원문으로 사용하며, 한국어판은 정책의 의미와 필수·선택 조건을 유지해 현지화합니다.
 
 **작업 항목 우선 · 위험도 기반 게이트 · 점진적 공개 · 리비전 귀속 승인 · 증거 기반 완료**
 
-Adaptive Agentic SDD는 AI 코딩 에이전트를 활용할 때 모든 변경에 무거운 절차를 강제하지 않으면서도, 큰 비용이 드는 실수를 막을 만큼의 구조를 제공하는 실무 워크플로입니다.
+Adaptive Agentic SDD는 AI 코딩 에이전트를 위한 실무 워크플로입니다. 명세 주도 개발, 관찰된 AS-IS 분석, 위험 기반 검토, 제한된 탐색, 증거 기반 완료를 결합합니다.
 
-이 방법론은 명세 주도 개발, 관찰 기반 레거시 시스템 분석, 위험도 기반 품질 게이트, 검증 계획, 제한된 에이전트 탐색, 검토 provenance, 작업 생명주기 완료를 결합합니다.
+> 도구가 지원하는 최대한의 절차가 아니라, 비용이 큰 실수를 신뢰성 있게 막는 최소한의 절차를 적용합니다.
 
-> 목표는 절차를 최대화하는 것이 아닙니다.  
-> 목표는 **비용이 큰 실수를 안정적으로 막는 최소한의 절차**를 적용하는 것입니다.
+## 여기서 시작
 
-## v0.2에서 바뀐 점
+- 워크플로 도입: [도입 가이드](docs/bootstrap.md)
+- 일상 작업 실행: [개발자 가이드](docs/developer-guide.md)
+- 기준 생명주기: [워크플로](docs/workflow.md)
+- 등급 정의와 필요한 깊이: [위험 등급](docs/risk-grades.md)
 
-v0.2는 기존 방법론의 핵심을 유지하면서, 실제 저장소를 반복 운영하며 얻은 경험을 바탕으로 이식 가능한 agent-runtime 계층을 추가합니다.
+## 워크플로 한눈에 보기
 
-- 비동작 변경을 위한 **Trivial** fast-track 등급,
-- **점진적 공개(Progressive Disclosure)**: 작은 루트 지침이 작업별 Skill로 라우팅하고, Skill이 필요한 상세 정책만 조건부로 읽는 구조,
-- **portable workflow 규칙**과 **프로젝트 로컬 safeguard**의 명시적 분리,
-- 저장소 전체를 다시 탐색하지 않는 phase-aware Review Packet,
-- review finding을 Human Decision, 실행 계약, 구현, non-blocking 유형으로 분리,
-- **리비전 귀속 Human 승인**: Review PASS와 승인을 구분하고, 승인을 phase·artifact revision·decision scope에 묶음,
-- 성숙한 프로젝트의 모든 게이트를 복사하지 않고 기존 저장소에 점진적으로 도입하는 bootstrap 경로,
-- `starter/` 아래 바로 수정해 사용할 수 있는 `AGENTS.md`와 구현 Skill 예시.
+[![위험도별 워크플로 개요와 분리된 검토·최종 허가 게이트](assets/workflow-overview-ko.svg)](assets/workflow-overview-ko.svg)
+
+**[상세 워크플로 도식 보기](assets/workflow-detailed-ko.svg)**
+
+개요도는 이해를 돕는 자료이며 생명주기 계약을 대신하지 않습니다. 상세도는 Large의 AS-IS·PLAN 개별 검토, 증거 차단 조건, 선택적 Blind Audit, 최종 Human 허가를 보여줍니다. 둘 다 수정 가능한 SVG이며 [도식 관리](assets/README.md)에 범위를 설명합니다.
+
+## v0.2 변경 내용
+
+이식 가능한 실행 구조에 다음을 추가했습니다.
+
+- 비동작 변경을 위한 Trivial fast-track
+- 작은 루트 계약이 작업 Skill과 조건부 문서로 연결되는 점진적 공개
+- 공개 공통 코어와 프로젝트 로컬 정책의 분리
+- 단계와 리비전에 연결된 검토·승인
+- starter 파일과 점진적 도입 경로
+
+병합 전 보강에서는 이 원칙을 실제 실행 절차에 연결했습니다.
+
+- Large의 AS-IS와 PLAN 검토 판정 분리
+- 독립 검토와 선택적 Blind Audit 계약 명확화
+- 인수 조건과 실제 검증 결과의 추적
+- 설계 승인과 최종 통합 허가 분리
+- 제한된 에이전트 인계와 리비전별 문맥 재사용
+- 개발자 가이드와 갱신된 워크플로 도식
+
+[제한 환경 검증 초안](docs/restricted-environment-verification.md)은 선택 사항이며 **구현되었거나 운영 검증을 마친 API·DB 자동화 기능이 아닙니다.**
 
 ## 핵심 원칙
 
-1. **작업 항목 우선(Work-item-first)**  
-   현재 작업 항목(GitHub Issue, Jira 티켓 또는 동등한 시스템)이 목표, 범위, 경계, 의존성, 인수 조건을 규정하는 실행 명세입니다.
+1. **작업 항목 우선.** 현재 작업 항목이 목표, 범위, 인수 조건, 의존성, 확정된 결정을 정의합니다. 관리 도구는 바꿀 수 있습니다.
+2. **관찰된 AS-IS.** 현재 메인라인 코드와 직접 런타임 증거가 현재 동작을 설명하며 오래된 계획은 그렇지 않습니다.
+3. **정보 유형별 Source of Truth.** 요구사항, 동작, 아키텍처, 검증, 검토, 승인은 각각 다른 기준 출처를 가집니다. [기준 출처](docs/source-of-truth.md)를 참고하세요.
+4. **위험에 맞춘 깊이.** 코딩 시간·파일 개수만이 아니라 위험, 가역성, 계약 영향, 실패 비용으로 등급을 결정합니다.
+5. **점진적 공개.** 가장 작고 안정적인 진입 계약을 읽고 현재 단계에 관련 있는 Skill·문서만 추가합니다.
+6. **구현 전 검증 설계.** 중요한 AC에는 입증 방법이 필요하며 실제 결과를 다시 AC에 연결해야 합니다.
+7. **제한된 탐색.** 직접 경로, 심볼, 계약, 호출자·피호출자에서 시작하고 구체적 불확실성이 있을 때만 넓힙니다.
+8. **검토는 재설계가 아니라 반증.** 자체 검토는 독립 검토가 아닙니다. Blind는 요구사항이 아니라 이전 판정을 먼저 제공하지 않는 방식입니다.
+9. **리비전 귀속 승인.** 검토 PASS는 사람의 승인이 아니며 설계 승인은 최종 병합 허가가 아닙니다.
+10. **증거 기반 완료.** 미실행 검사는 PASS가 아닙니다. 필수 검증·검토·허가와 해당하는 생명주기 작업이 실제로 완료되어야 합니다.
 
-2. **관찰된 AS-IS(Observed AS-IS)**  
-   현재 동작은 오래된 설계 문구가 아니라 현재 메인라인 코드와 직접 런타임 증거에서 확인합니다.
+실제 트레이드오프를 기록하되 템플릿을 채우려고 대안을 만들지 않습니다. [트레이드오프 기록](docs/trade-off-capture.md)을 참고하세요.
 
-3. **정보 유형별 Source of Truth(기준 출처)**  
-   요구사항, 현재 동작, 아키텍처, UI, 제품 규칙은 서로 다른 권위 있는 출처를 가질 수 있습니다.
-
-4. **위험도 기반 적응형 깊이(Risk-Adaptive Depth)**  
-   티켓 크기만이 아니라 변경 위험에 따라 절차의 깊이를 조절합니다.
-
-   | 등급 | 기본 깊이 |
-   | --- | --- |
-   | Trivial | Fast-track |
-   | Small | 간결(Lean) |
-   | Medium | 표준(Standard) |
-   | Large | 심층(Deep) + 독립 설계 검토 |
-   | Epic | 작업 분할 + 고위험 레인 심층 검토 |
-
-5. **점진적 공개(Progressive Disclosure)**  
-   에이전트는 가장 작고 안정적인 진입 계약부터 읽고, 현재 작업에 필요한 경우에만 작업별 Skill과 상세 process/domain 문서를 추가로 읽습니다.
-
-6. **구현 전 검증 전략(Verification Strategy)**  
-   중요한 인수 조건은 코드를 변경하기 전에 어떻게 입증할지 알고 있어야 합니다.
-
-7. **제한된 탐색(Bounded Exploration)**  
-   작업 항목, 직접 경로·심볼, 공개 계약, 직접 호출자·피호출자에서 시작하고 증거가 요구할 때만 탐색 범위를 넓힙니다.
-
-8. **검토는 재설계가 아니라 반증(Review is falsification, not redesign)**  
-   검토자는 제안된 변경이 틀렸거나, 안전하지 않거나, 일관되지 않거나, 검증 불가능한 구체적 이유를 찾는 데 집중합니다.
-
-9. **리비전 귀속 Human 승인(Revision-bound Human approval)**  
-   Human 승인이 필요할 때는 Human에게 실제로 제시한 정확한 phase, artifact revision, decision scope에 승인을 묶습니다. 의미 있는 변경이 생기면 새로운 검토·승인이 필요합니다.
-
-10. **증거 기반 생명주기 완료(Evidence-based lifecycle completion)**  
-    실행하지 않은 검사는 PASS가 아닙니다. 필수 검증, 검토, 지속 문서 동기화, 병합·정리, 레인 해제가 실제로 끝나야 작업이 완료됩니다.
-
-## 워크플로
-
-```mermaid
-flowchart TD
-    A[작업 항목] --> B[사전 점검]
-    B --> C{등급}
-    C -->|Trivial| T[대상 변경 + 대상 검증]
-    C -->|Small| S[간결한 AS-IS + 계획]
-    C -->|Medium/Large/Epic| D[제한된 AS-IS]
-    D --> E[TO-BE + 검증 전략]
-    E --> F{설계 검토 / 승인이 필요한가?}
-    F -->|예| G[리비전 식별 설계 검토]
-    G --> H[정책상 필요하면 Human 승인]
-    F -->|아니요| I[구현]
-    H --> I
-    S --> I
-    T --> J[자체 검토]
-    I --> K[대상 중심 검증]
-    K --> J
-    J --> L{독립 코드 검토가 필요한가?}
-    L -->|예| M[독립 검토]
-    L -->|아니요| N[PR / 병합 게이트]
-    M --> N
-    N --> O[조건부 실기기/런타임 QA]
-    O --> P[병합 / 정리 / 해제]
-```
-
-canonical 생명주기는 [docs/workflow.md](docs/workflow.md)를 참고하세요.
-
-## Portable runtime 구조
-
-성숙한 저장소라고 해서 모든 workflow 규칙을 `AGENTS.md`에 넣을 필요는 없습니다.
+## 이식 가능한 실행 구조
 
 ```text
-AGENTS.md
-   -> 작업 라우팅 + 항상 적용 hard guard
-        -> 작업 Skill
-             -> 조건부 process/domain 문서
+AGENTS.md: 라우팅 + 항상 적용하는 보호 규칙
+  -> 작업 Skill: 실행 절차
+      -> 조건부 절차·도메인 문서
 ```
 
-이 구조는 초기 컨텍스트를 작게 유지하면서도 필요한 규칙으로 들어가는 경로를 끊지 않습니다.
+[starter](starter/AGENTS.md)는 도입 스냅샷이지 범용 복사·실행 설정이 아닙니다. placeholder를 바꾸고 로컬 정책을 조정하며 내부 계약의 일관성을 유지합니다. Skill 복사가 모든 방법론 문서의 복사까지 의미한다고 가정하지 않습니다.
 
-`starter/` 디렉터리는 기존 저장소에 맞게 조정할 수 있는 의도적으로 작은 예시입니다. 범용 drop-in 설정이 아닙니다. placeholder를 바꾸고, 불필요한 guard는 제거하고, 프로젝트가 실제로 필요성을 보여준 로컬 규칙만 추가하세요.
+## 공개 코어와 로컬 정책
 
-## 도입 경로
+작업 경계, 위험 분류, 제한된 탐색, 검증 대응, 리비전을 고려한 검토·승인, 증거 기반 완료는 이식 가능한 규칙으로 유지합니다.
 
-기존 프로젝트에 적용할 때는 [docs/bootstrap.md](docs/bootstrap.md)부터 시작합니다.
-
-1. workflow를 바꾸기 전에 저장소를 관찰합니다.
-2. 간결한 루트 agent contract를 만듭니다.
-3. 구현 Skill 하나만 추가합니다.
-4. 위험 등급과 검증 기대치를 정의합니다.
-5. Trivial/Small 실제 작업으로 파일럿합니다.
-6. 실패 비용이 정당화할 때만 깊은 검토·승인 게이트를 추가합니다.
+모듈 이름, 환경 특이사항, 실제 명령, 조직별 승인 시스템, provider·모델 라우팅, 자격 증명, 업무 용어는 로컬에 둡니다. 모든 등급에 별도 SDD 파일, 독립 검토, Blind Audit을 강제하지 않습니다.
 
 ## 저장소 구조
 
 ```text
-adaptive-agentic-sdd-ko/
-├─ README.md
-├─ docs/
-│  ├─ bootstrap.md
-│  ├─ concepts.md
-│  ├─ workflow.md
-│  ├─ source-of-truth.md
-│  ├─ risk-grades.md
-│  ├─ verification.md
-│  ├─ review-gates.md
-│  ├─ device-qa.md
-│  ├─ token-efficiency.md
-│  └─ trade-off-capture.md
-├─ starter/
-│  ├─ AGENTS.md
-│  ├─ .agents/skills/implementing-issue/SKILL.md
-│  └─ docs/sdd-workflow.md
-├─ templates/
-└─ examples/
+assets/       수정 가능한 개요·상세 워크플로 SVG
+docs/         기준 정책, 도입 가이드, 개발자 가이드, 선택적 초안
+starter/      간결한 루트 계약, 구현 Skill, 로컬 워크플로 계약
+templates/    작업 항목, AS-IS, TO-BE, 변경 계획, PR, 실기기 QA
+examples/     가상의 Trivial, Small, Medium, Large 진행 예시
 ```
-
-## Portable core와 프로젝트 로컬 정책
-
-일반적으로 portable core에 둘 것:
-
-- 작업 항목 우선 실행,
-- 위험 등급,
-- 제한된 탐색,
-- 점진적 공개,
-- 검증 매핑,
-- 리비전 인식 검토·승인,
-- 증거 기반 완료.
-
-프로젝트 간 일반화되기 전까지 로컬에 둘 것:
-
-- 모듈 이름과 수정 금지 경로,
-- 빌드 도구 특이사항,
-- 실기기·에뮬레이터 설정,
-- shell·encoding workaround,
-- 제품 전용 용어,
-- provider별 secret/media 규칙,
-- 모델/provider qualification matrix.
 
 ## 상태
 
-**v0.2 — 이식 가능한 실무 방법론(Portable Working Methodology)**
+**v0.2 — 이식 가능한 실무 방법론**
 
-이 방법론은 보편적 표준이 아니라 실용적인 워크플로입니다. 건강한 워크플로는 시간이 지날수록 규칙을 끝없이 쌓는 것이 아니라 **더 작고 정교해져야 합니다**.
+실용적인 워크플로이며 보편적 표준이나 모든 연동 기능이 구현되었다는 주장이 아닙니다. 건강한 워크플로는 실제 사용을 관찰하면서 더 작고 정교해집니다.
