@@ -83,9 +83,18 @@ AGENTS.md: 라우팅 + 항상 적용하는 보호 규칙
 assets/       수정 가능한 개요·상세 워크플로 SVG
 docs/         기준 정책, 도입 가이드, 개발자 가이드, 선택적 초안
 starter/      간결한 루트 계약, 구현 Skill, 로컬 워크플로 계약
-templates/    작업 항목, AS-IS, TO-BE, 변경 계획, PR, 실기기 QA
-examples/     가상의 Trivial, Small, Medium, Large 진행 예시
+templates/    작업 항목, 설계, PR, QA, 리뷰 브리핑, 검증 인계
+examples/     가상의 등급별 진행, 리뷰 동일성, 완료 증거 보존 예시
 ```
+
+## 선택적 실무 자료
+
+- [리뷰 대상 동일성](examples/review-identity/README.md): 스냅샷 포함 범위와 `identical / head-only / changed` 비교.
+- [검증 인계](templates/verification-handoff.md): 계획한 기대값, 반환 관찰, 판정, 정정·재실행 이력. **DRAFT / OPTIONAL**을 유지합니다.
+- [리뷰 브리핑](templates/review-briefing.md): 다섯 절 전체 양식과 지적 수정 후 축약 양식.
+- [완료 증거](examples/completion-evidence/README.md): 설계·후보 증거 보존과 허가된 정리.
+
+이 템플릿과 가상 예시는 기존 정책을 설명합니다. 운영 검증을 주장하거나 모든 작업에 추가 산출물을 요구하지 않습니다.
 
 ## 상태
 
