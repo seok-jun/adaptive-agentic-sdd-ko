@@ -1,12 +1,16 @@
-# Adaptive Agentic SDD
+# Adaptive Agentic SDD — AI 코딩 에이전트를 위한 Adaptive SDD
 
 [English](https://github.com/seok-jun/adaptive-agentic-sdd) | **한국어**
 
 > 이 저장소는 영문 `adaptive-agentic-sdd`의 한국어판입니다. 영문을 기준 원문으로 사용하며, 한국어판은 정책의 의미와 필수·선택 조건을 유지해 현지화합니다.
 
+> **SDD를 과도하게 키우지 않습니다.** 변경 위험이 커질 때만 계획·검토·검증의 깊이를 높입니다.
+
 **작업 항목 우선 · 위험도 기반 게이트 · 점진적 공개 · 리비전 귀속 승인 · 증거 기반 완료**
 
-Adaptive Agentic SDD는 AI 코딩 에이전트를 위한 실무 워크플로입니다. 명세 주도 개발, 관찰된 AS-IS 분석, 위험 기반 검토, 제한된 탐색, 증거 기반 완료를 결합합니다.
+Adaptive SDD는 **OpenAI Codex**, **Claude Code** 같은 **AI 코딩 에이전트(AI coding agents)**를 위한 위험 적응형 **Spec-Driven Development (SDD)** 워크플로입니다. 실무 **에이전틱 코딩(agentic coding)**에서 가장 작은 안전한 절차로 시작하고, 변경 위험이 커질 때만 분석·검토·검증을 강화하도록 설계했습니다.
+
+Adaptive Agentic SDD는 관찰된 AS-IS 분석, 제한된 탐색, 위험 기반 검토, 리비전 귀속 승인, 증거 기반 완료를 결합합니다.
 
 > 도구가 지원하는 최대한의 절차가 아니라, 비용이 큰 실수를 신뢰성 있게 막는 최소한의 절차를 적용합니다.
 
