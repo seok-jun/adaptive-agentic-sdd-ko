@@ -14,6 +14,65 @@ Adaptive Agentic SDD는 관찰된 AS-IS 분석, 제한된 탐색, 위험 기반 
 
 > 도구가 지원하는 최대한의 절차가 아니라, 비용이 큰 실수를 신뢰성 있게 막는 최소한의 절차를 적용합니다.
 
+## 5분 빠른 시작
+
+**새 CLI도, 특정 이슈 트래커도 필수가 아닙니다. 세 파일과 지금 쓰는 코딩 에이전트로 시작합니다.**
+
+### 방법 A — 저장소를 에이전트에게 바로 전달
+
+코딩 에이전트가 GitHub 저장소나 URL을 읽을 수 있다면 아래 프롬프트를 그대로 사용합니다.
+
+```text
+다음 저장소의 Adaptive SDD를 이 프로젝트에 도입해줘:
+https://github.com/seok-jun/adaptive-agentic-sdd
+
+starter는 그대로 복사하는 설정이 아니라 템플릿으로 사용해.
+제품 코드를 수정하기 전에 현재 저장소를 분석하고 최소 도입안을 먼저 제안해.
+
+starter를 다음과 같이 실제로 관찰한 저장소 정보에 맞춰 조정해:
+- 프로젝트와 모듈 경계
+- 실제 빌드 및 테스트 명령
+- CI 기능
+- 중요한 공유 또는 생성 경로
+- 기존 개발 규칙
+
+없는 기능이나 규칙을 만들어내지 마.
+도입 구조는 최소한으로 유지하고 기존 저장소 지침은 보존해.
+```
+
+### 방법 B — 최소 starter 세 파일 복사
+
+다음 세 파일을 대상 저장소에 복사한 뒤 프로젝트에 맞게 조정합니다.
+
+```text
+starter/AGENTS.md
+  -> AGENTS.md
+
+starter/.agents/skills/implementing-issue/SKILL.md
+  -> .agents/skills/implementing-issue/SKILL.md
+
+starter/docs/sdd-workflow.md
+  -> docs/sdd-workflow.md
+```
+
+기존 파일이 있다면 덮어쓰지 말고 조정해서 합칩니다. starter의 placeholder는 대상 저장소에서 실제로 확인한 사실로만 교체합니다.
+
+그다음 에이전트에게 이렇게 요청합니다.
+
+```text
+이 저장소를 분석하고 Adaptive SDD starter를 현재 프로젝트에 맞게 조정해줘.
+아직 제품 코드는 수정하지 마.
+도입 구조는 최소한으로 유지하고 기존 규칙을 보존한 뒤 변경안을 먼저 보여줘.
+```
+
+도입안이 확정되면 첫 실제 작업은 이 정도로 시작할 수 있습니다.
+
+```text
+이슈 #123을 Adaptive SDD로 구현해줘.
+```
+
+워크플로는 작게 시작하고 변경 위험이 커질 때만 분석·검토·검증을 강화합니다.
+
 ## 여기서 시작
 
 - 워크플로 도입: [도입 가이드](docs/bootstrap.md)
